@@ -36,7 +36,7 @@ export default {
     };
     const actionsFn = () => {
       // 传参用法
-      store.dispatch("moduleB/updateName", 6)
+        store.dispatch("moduleB/updateName", 6)
     };
     return {
       mutationsFn,
