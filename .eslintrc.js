@@ -16,6 +16,8 @@ module.exports = {
     'quotes': 'off',
     'semi': 'off',
     'comma-dangle': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-trailing-spaces': 'off',
+    'space-before-function-paren': 'off'
   }
 }

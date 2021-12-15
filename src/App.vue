@@ -1,44 +1,49 @@
 <template>
-  <!-- vue2.0需要根元素，vue3.0可以是代码片段 fragment -->
-  <div>
-    App
-    <!-- 1、使用根模块state的数据 -->
-    <h1>{{ $store.state.username }}</h1>
-    <!-- 2、使用根模块getters的数据 -->
-    <h1>{{ $store.getters.newName }}</h1>
-    <h1>{{ $store.getters["newName"] }}</h1>
-    <button @click="mutationsFn">按钮</button>
-    <h1>{{ $store.state.age }}</h1>
-    <button @click="actionsFn">改变年龄</button>
+  <div id="container">
+    <!-- 1、使用A模块的state数据 -->
+    <p>{{ $store.state.moduleA.username }}</p>
+    <!-- 2、使用A模块的getters数据 -->
+    <p>{{ $store.getters.newName }}</p>
+
+    <!-- 1、使用B模块的state数据 -->
+    <p>{{ $store.state.moduleB.username }}</p>
+    <!-- 2、使用B模块的getters数据 $store.getters['模块名/计算属性']-->
+    <p>{{ $store.getters["moduleB/newName"] }}</p>
+    <button @click="mutationsFn">mutationsFn</button>
+    <button @click="actionsFn">actionsFn</button>
+    <p>{{ $store.state.moduleB.age }}</p>
   </div>
-  <p>p</p>
 </template>
 <script>
 import { useStore } from "vuex";
 export default {
   name: "App",
-  setup () {
+  setup() {
     // userStore可以拿到vuex仓库实例
     const store = useStore();
-    // 1、使用根模块state的数据
+    // 1、使用moduleA模块state的数据
     console.log(store);
-    console.log(store.state.username);
-    // 2、使用根模块getters的数据
-    console.log(store.getters.newName);
-    // 3、提交根模块mutations方法
+    console.log(store.state.moduleA.username); // moduleA
+    // 2、使用moduleA模块getters的数据
+    console.log(store.getters.newName); // moduleA!!!!
+
+    // 1、使用moduleB模块getters的数据
+    console.log(store.getters["moduleB/newName"]); // moduleB???
+
     const mutationsFn = () => {
-      store.commit("updateName");
+      // 提交B模块的更改
+      store.commit('moduleB/updateName')
     };
-    // 4、调用根模块的actions函数
     const actionsFn = () => {
-      store.dispatch('updateName')
-    }
+      // 传参用法
+      store.dispatch("moduleB/updateName", 6)
+    };
     return {
       mutationsFn,
-      actionsFn
-    }
+      actionsFn,
+    };
   },
 };
 </script>
-<style lang="less">
+<style lang='less' scoped>
 </style>
