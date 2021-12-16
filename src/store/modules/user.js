@@ -21,7 +21,7 @@ export default {
      * @param { Object } playLoad 用户信息对象
      */
     setUser (state, playLoad) {
-      state.profile.mobile = playLoad
+      state.profile = playLoad
     }
   }
 }

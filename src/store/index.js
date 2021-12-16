@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-// 导入持久化插件
+// 导入vuex持久化插件
 import createPersistedstate from "vuex-persistedstate";
 import user from "./modules/user";
 import cart from "./modules/cart";
