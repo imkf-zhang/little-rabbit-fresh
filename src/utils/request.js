@@ -18,7 +18,7 @@ const API = axios.create({
 API.interceptors.request.use(
   function (config) {
     const { profile } = store.state.user
-    if(profile.token) {
+    if (profile.token) {
       config.headers.Authorization = `Bearer${profile.token}`
     }
     return config;
@@ -27,7 +27,6 @@ API.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-consol.log(router)
 // 响应业务逻辑
 API.interceptors.response.use(
   function (response) {
@@ -68,6 +67,6 @@ export default (url, method, submitData) => {
   return API({
     url,
     method,
-    [method.toLowerCase() === 'get' ? 'params':'data']: submitData
+    [method.toLowerCase() === 'get' ? 'params' : 'data']: submitData
   })
 }

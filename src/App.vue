@@ -1,18 +1,12 @@
 <template>
-  <div id="container">
-    你好
-  </div>
+  <!-- 一级路由 -->
+  <router-view></router-view>
 </template>
 <script>
-import { useStore } from 'vuex'
 export default {
   name: "",
-  setup() {
-    const STORE = useStore();
-   
-    return {
-     
-    };
+  setup () {
+    return {};
   },
 };
 </script>
