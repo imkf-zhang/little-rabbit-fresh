@@ -5,16 +5,18 @@
     <!-- 二级路由 -->
     <router-view></router-view>
   </main>
-  <footer>底部</footer>
+  <footer><app-footer></app-footer></footer>
 </template>
 <script>
 import AppTopnav from "@/components/app-topnav.vue";
 import AppHeader from "@/components/app-header.vue";
+import AppFooter from '@/components/app-footer.vue'
 export default {
   name: "xtx-layout",
   components: {
     AppTopnav,
     AppHeader,
+    AppFooter
   },
   setup() {
     return {};
