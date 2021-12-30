@@ -52,6 +52,7 @@ API.interceptors.response.use(
 
       // 有一个隐患如果地址是这样的'/user?a=10&b=12'  &有特殊字符，需要转码要是不转码可能就只能拿到'/user?a=10'
       const fullPath = encodeURIComponent(router.currentRoute.value.fullPath)
+      
       router.push('/login?redirectUrl=' + fullPath)
     }
     return Promise.reject(error);

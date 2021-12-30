@@ -1,6 +1,6 @@
 <template>
-  <nav>顶部通栏</nav>
-  <header>头部</header>
+  <nav><app-topnav></app-topnav></nav>
+  <header><app-header></app-header></header>
   <main>
     <!-- 二级路由 -->
     <router-view></router-view>
@@ -8,9 +8,15 @@
   <footer>底部</footer>
 </template>
 <script>
+import AppTopnav from "@/components/app-topnav.vue";
+import AppHeader from "@/components/app-header.vue";
 export default {
   name: "xtx-layout",
-  setup () {
+  components: {
+    AppTopnav,
+    AppHeader,
+  },
+  setup() {
     return {};
   },
 };
