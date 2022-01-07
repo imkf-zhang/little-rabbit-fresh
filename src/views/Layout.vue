@@ -1,24 +1,28 @@
 <template>
   <nav><app-topnav></app-topnav></nav>
   <header><app-header></app-header></header>
-  <main>
+  <main style="height: 500px">
     <!-- 二级路由 -->
     <router-view></router-view>
   </main>
   <footer><app-footer></app-footer></footer>
 </template>
 <script>
+import { useStore } from "vuex";
 import AppTopnav from "@/components/app-topnav.vue";
 import AppHeader from "@/components/app-header.vue";
-import AppFooter from '@/components/app-footer.vue'
+import AppFooter from "@/components/app-footer.vue";
 export default {
   name: "xtx-layout",
   components: {
     AppTopnav,
     AppHeader,
-    AppFooter
+    AppFooter,
   },
   setup() {
+    const store = useStore();
+    // 在这个路由页面我就去发请求拿数据，那么在各个组件里是不是就可以是用stroe中的数据了
+    store.dispatch("cartegory/getList");
     return {};
   },
 };

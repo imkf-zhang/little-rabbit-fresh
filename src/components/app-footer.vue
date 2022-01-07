@@ -95,7 +95,7 @@ export default {
       }
     }
     dt {
-      line-height: 1;
+      line-height: 1;//如果是数字的话其实是fontsize的倍数
       font-size: 18px;
     }
     dd {
