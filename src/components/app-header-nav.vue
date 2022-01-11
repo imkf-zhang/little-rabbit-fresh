@@ -27,6 +27,7 @@ export default {
   name: "AppHeaderNav",
   setup() {
     const store = useStore();
+    // 直接用store中的数据并不是响应式的，所以要用计算属性加持一下
     const list = computed(() => {
       return store.state.cartegory.list;
     });
