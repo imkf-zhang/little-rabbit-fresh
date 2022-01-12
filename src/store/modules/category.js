@@ -12,10 +12,18 @@ export default {
     setList(state, payload) {
       state.list = payload;
     },
+    // 二级分类的显示和隐藏
+    show(state, id) {
+      state.list.find((item) => item.id === id).open = true;
+    },
+    hide(state, id) {
+      state.list.find((item) => item.id === id).open = false;
+    },
   },
   actions: {
     async getList(ctx) {
       const { result } = await findAllCategory();
+      result.forEach((item) => (item.open = false));
       ctx.commit("setList", result);
     },
   },

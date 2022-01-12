@@ -2,17 +2,16 @@
   <!-- 可以发现，其实这种列表导航形式的多用用ul  li标签，是有所用的，没有加载出来的时候页面显示不至于太离谱 -->
   <ul class="navs">
     <li class="home"><router-link to="/">首页</router-link></li>
-    <li v-for="item in list" :key="item.id">
-      <router-link to="/">{{item.name}}</router-link>
-      <div class="layer">
+    <li v-for="item in list" :key="item.id" @mouseenter="show(item.id)" @mouseleave="hide(item.id)">
+      <router-link @click="hide(item.id)"  :to="`/category/${item.id}`">{{ item.name }}</router-link>
+      <!-- 温习一下vue的样式 -->
+      <!-- <div class="layer" :class="{open: item.open}"> -->
+      <div class="layer" :class="[item.open ? 'open':'' ]">
         <ul>
-          <li v-for=" sub in item.children" :key="sub.id">
-            <router-link to="/">
-              <img
-                :src="sub.picture"
-                alt=""
-              />
-              <p>{{sub.name}}</p>
+          <li v-for="sub in item.children" :key="sub.id">
+            <router-link :to="`/category/sub/${sub.id}`" @click="hide(item.id)">
+              <img :src="sub.picture" alt="" />
+              <p>{{ sub.name }}</p>
             </router-link>
           </li>
         </ul>
@@ -31,7 +30,13 @@ export default {
     const list = computed(() => {
       return store.state.cartegory.list;
     });
-    return { list };
+    const show = (id) => {
+      store.commit("cartegory/show", id);
+    };
+    const hide = (id) => {
+      store.commit("cartegory/hide", id);
+    };
+    return { list, show, hide };
   },
 };
 </script>
@@ -58,14 +63,18 @@ export default {
         border-bottom: 1px solid @xtxColor;
       }
       // 显示二级类名
-      > .layer {
-        height: 132px;
-        opacity: 1;
-      }
+      // > .layer {
+      //   height: 132px;
+      //   opacity: 1;
+      // }
     }
   }
 }
 .layer {
+  &.open {
+    height: 132px;
+    opacity: 1;
+  }
   width: 1240px;
   background-color: #fff;
   position: absolute;
