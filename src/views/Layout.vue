@@ -1,5 +1,6 @@
 <template>
   <nav><app-topnav></app-topnav></nav>
+  <app-header-sticky></app-header-sticky>
   <header><app-header></app-header></header>
   <main style="height: 500px">
     <!-- 二级路由 -->
@@ -12,12 +13,14 @@ import { useStore } from "vuex";
 import AppTopnav from "@/components/app-topnav.vue";
 import AppHeader from "@/components/app-header.vue";
 import AppFooter from "@/components/app-footer.vue";
+import AppHeaderSticky from '@/components/app-header-sticky.vue'
 export default {
   name: "xtx-layout",
   components: {
     AppTopnav,
     AppHeader,
     AppFooter,
+    AppHeaderSticky
   },
   setup() {
     const store = useStore();
